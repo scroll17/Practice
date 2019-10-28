@@ -10,10 +10,19 @@ export function* addProductToBasketSaga({item, col}) {
         const { mainReducer: { basket: oldBasket } } = yield select();
 
         const newBasket = cloneDeep(oldBasket);
-        newBasket.push({
-            ...item,
-            col
-        });
+        const productIndex = newBasket.findIndex( product => product.id === item.id);
+
+        if(productIndex >= 0){
+
+            newBasket[productIndex].col += col;
+
+        }else{
+
+            newBasket.push({
+                ...item,
+                col
+            });
+        }
 
 
         yield put({type: ACTION.NEW_PRODUCT_IN_A_BASKET, basket: newBasket});
@@ -28,24 +37,20 @@ export function* deleteProductFromBasketSaga({item, col}) {
 
         const { mainReducer: { basket: oldBasket } } = yield select();
 
-        console.log("oldBasket", oldBasket);
 
-        const newBasket = oldBasket.reduce( (accumulator, product) => {
-            if(product.id === item.id){
-                if(product.col <= col){
-                    return accumulator
-                }else{
-                    return accumulator.push({
-                        ...product,
-                        col: product.col - col
-                    });
-                }
-            }else {
-                return accumulator.push(product);
-            }
-        }, []);
+        const newBasket = cloneDeep(oldBasket);
+        newBasket.forEach( (product, id) => {
+           if(product.id === item.id){
+               if(product.col <= col){
 
-        console.log("newBasket", newBasket);
+                   newBasket.splice(id, 1);
+
+               }else {
+                   newBasket[id].col -= col;
+               }
+           }
+        });
+
 
         yield put({type: ACTION.NEW_PRODUCT_IN_A_BASKET, basket: newBasket});
 
