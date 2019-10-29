@@ -1,11 +1,12 @@
 import ACTION from '../actions/actionsTypes/actionsTypes';
 
 import { CATEGORIES } from "../utils/textForPages"
+import { restoreValues } from "../utils/restoreValues";
 
 const initialState = {
     allProduct: CATEGORIES || [],
     productFound: [],
-    basket: [],
+    basket: restoreValues("basket") || [],
     error: null
 };
 

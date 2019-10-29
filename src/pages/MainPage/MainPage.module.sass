@@ -4,7 +4,7 @@
 
   width: 100%
   max-width: 1600px
-  margin: 0 auto
+  margin: 72px 0 auto
   box-sizing: border-box
 
   main
@@ -29,3 +29,27 @@
 
           width: 24px
           height: 24px
+
+@media only screen and (max-width: 950px)
+  .main
+    margin: 72px 0 0
+    ul
+      width: auto
+      li
+        max-width: 100%
+        width: (100% / 3)
+
+@media only screen and (max-width: 710px)
+  .main
+    main
+      padding-left: 5px
+    ul
+      li
+        max-width: 100%
+        width: 50%
+
+@media only screen and (max-width: 485px)
+  .main
+    ul
+      li
+        width: 100%

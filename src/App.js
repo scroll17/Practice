@@ -8,7 +8,12 @@ import BasketPage from "./pages/BasketPage/BasketPage";
 
 import Header from "./components/Header/Header";
 
-import { URL } from "./constants";
+import { URL, STORE } from "./constants";
+import { clearProductFound } from "./actions/actionCreators/actionCreators"
+
+history.listen(_ => {
+    STORE.dispatch(clearProductFound());
+});
 
 class App extends Component {
 

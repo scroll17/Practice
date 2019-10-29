@@ -21,7 +21,7 @@ function Product(props) {
                     <i className="fas fa-hryvnia" />
                 </p>
 
-                {children(data)}
+                {children}
 
             </div>
         </li>

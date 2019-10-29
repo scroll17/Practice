@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { STORE } from '../constants';
 
 toast.configure({
-    autoClose: 2000,
+    autoClose: 1000,
     closeOnClick: true
 });
 

@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import style from './SearchInput.module.sass'
 
 import connect from "react-redux/es/connect/connect";
+import { useLocation } from "react-router-dom";
 
 import { productSearch, clearProductFound } from "../../../actions/actionCreators/actionCreators";
 
 function SearchInput(props) {
+    let location = useLocation();
     const inputRef = useRef(null);
 
     const findProduct = () => {
@@ -19,6 +21,12 @@ function SearchInput(props) {
             props.clearProductFound()
         }
     };
+
+    useEffect(() => {
+        if(inputRef.current !== null) {
+            inputRef.current.value = null;
+        }
+    }, [location.pathname]);
 
     return(
         <div className={style.searchInput}>

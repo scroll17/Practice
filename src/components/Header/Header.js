@@ -16,7 +16,7 @@ function Header(props) {
     return(
         <header>
             <div className={style.header}>
-                <Link to={URL.HOME}>
+                <Link to={URL.HOME} className={style.logo}>
                     <img src={LOGO_SRC} alt={''}/>
                 </Link>
                 <SearchInput />
